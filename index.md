@@ -37,5 +37,5 @@ This project analyses COVID-19 cases and deaths using WHO public health data. It
 ## Contact
 
 Email: ruebelinda02@gmail.com 
-LinkedIn:  
+LinkedIn:  https://www.linkedin.com/in/rumbidzai-mahlanganise-3b34b2203
 GitHub: https://github.com/Rumbie3365
