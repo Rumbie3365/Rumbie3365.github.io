@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumbidzai Mahlanganise · Health Data Analyst</title>
+<meta name="description" content="Rumbidzai Mahlanganise, Health Data Analyst. Power BI, SQL, Python and Excel dashboards for health and business data, with hands-on DHIS2, REDCap and EHR experience.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rumbidzai Mahlanganise · Health Data Analyst">
+<meta property="og:description" content="Power BI, SQL, Python and Excel dashboards for health and business data. Medical Analytics & Informatics graduate, University of Zimbabwe.">
+<meta property="og:url" content="https://rumbie3365.github.io/">
+<meta property="og:image" content="https://rumbie3365.github.io/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B2D44'/%3E%3Cpath d='M10 38h10l4-10 6 18 6-26 5 14h13' fill='none' stroke='%2362E3D6' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#08192B; --navy2:#0B2D44; --teal-d:#0D4553; --teal:#1C9C93; --mint:#62E3D6;
+    --ink:#0F1E2E; --muted:#56677A; --line:#E2E8EE; --bg:#F5F8FA; --card:#FFFFFF;
+    --radius:16px; --max:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(8,25,43,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;letter-spacing:.2px}
+  .brand:hover{text-decoration:none}
+  .brand svg{flex:none}
+  .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+  .nav ul a{color:#C6D5E1;font-size:14.5px;font-weight:500}
+  .nav ul a:hover{color:#fff;text-decoration:none}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;color:#fff;
+        background:linear-gradient(118deg,var(--navy) 0%,var(--navy2) 45%,var(--teal-d) 80%,#0F5A60 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.1px,transparent 1.2px);background-size:22px 22px}
+  .hero .wrap{position:relative;padding:92px 24px 84px}
+  .eyebrow{font-size:13.5px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--mint)}
+  .hero h1{font-size:clamp(36px,6vw,58px);line-height:1.08;margin:14px 0 18px;letter-spacing:-1px;font-weight:700}
+  .hero p.lead{font-size:clamp(17px,2.2vw,20px);color:#D3E0EA;max-width:640px;margin:0 0 30px}
+  .hero p.lead strong{color:#fff;font-weight:600}
+  .btns{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .15s ease, background .15s ease}
+  .btn:hover{text-decoration:none;transform:translateY(-1px)}
+  .btn.primary{background:var(--mint);color:#06222B}
+  .btn.ghost{color:#E4EEF5;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.04)}
+  .btn.ghost:hover{background:rgba(255,255,255,.10)}
+  .facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:38px;font-size:14.5px;color:#AFC3D2}
+  .facts span{display:inline-flex;align-items:center;gap:8px}
+  .facts i{width:7px;height:7px;border-radius:50%;background:var(--mint);display:inline-block}
+  .pulse{position:absolute;right:-20px;top:70px;width:520px;max-width:46%;opacity:.5;pointer-events:none}
+
+  /* sections */
+  section{padding:84px 0}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .kicker{font-size:13px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:var(--teal)}
+  h2{font-size:clamp(26px,3.4vw,34px);line-height:1.2;margin:8px 0 14px;letter-spacing:-.4px}
+  .intro{color:var(--muted);max-width:700px;margin:0 0 40px;font-size:17px}
+
+  /* about */
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+  .about p{margin:0 0 16px;font-size:17px;color:#2B3A4A}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .stat{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .stat b{display:block;font-size:26px;letter-spacing:-.5px;color:var(--navy2)}
+  .stat span{font-size:14px;color:var(--muted)}
+
+  /* projects */
+  .project{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-bottom:28px;box-shadow:0 1px 2px rgba(15,30,46,.04),0 10px 30px -18px rgba(15,30,46,.25)}
+  .project.flip{grid-template-columns:1fr 1.25fr}
+  .project.flip .shot{order:2}
+  .shot{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff}
+  .shot img{display:block;width:100%;height:auto;transition:transform .35s ease}
+  .shot:hover img{transform:scale(1.02)}
+  .project h3{font-size:22px;line-height:1.3;margin:6px 0 10px;letter-spacing:-.2px}
+  .tag-label{font-size:12.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--teal)}
+  .project p{margin:0 0 14px;color:#33465A}
+  .project ul{margin:0 0 18px;padding-left:18px;color:#33465A}
+  .project li{margin:4px 0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}
+  .chips li{font-size:13px;font-weight:500;padding:5px 11px;border-radius:999px;background:#EAF6F5;color:#11615B;border:1px solid #CDEBE8;margin:0}
+  .links{display:flex;flex-wrap:wrap;gap:10px}
+  .links a{font-size:14.5px;font-weight:600;padding:9px 15px;border-radius:9px;border:1px solid var(--line);color:var(--navy2);background:#fff}
+  .links a.main{background:var(--navy2);color:#fff;border-color:var(--navy2)}
+  .links a:hover{text-decoration:none;border-color:var(--teal)}
+
+  /* experience */
+  .timeline{position:relative;margin:0;padding:0;list-style:none}
+  .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .job{position:relative;padding:0 0 34px 38px}
+  .job::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--teal)}
+  .job h3{margin:0;font-size:19px}
+  .job .meta{color:var(--muted);font-size:14.5px;margin:2px 0 10px}
+  .job ul{margin:0;padding-left:18px;color:#33465A}
+  .job li{margin:4px 0}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .skill-card h3{margin:0 0 14px;font-size:16.5px}
+  .skill-card .chips{margin:0}
+
+  /* education */
+  .edu{display:grid;grid-template-columns:1fr 1.3fr;gap:28px;align-items:start}
+  .edu-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .edu-card h3{margin:0 0 6px;font-size:18px}
+  .edu-card .meta{color:var(--muted);font-size:15px}
+  .certs{list-style:none;margin:0;padding:0}
+  .certs li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .certs li:last-child{border-bottom:0}
+  .certs b{font-weight:600;font-size:15.5px}
+  .certs span{display:block;color:var(--muted);font-size:14px}
+  .certs em{font-style:normal;color:var(--muted);font-size:14px;white-space:nowrap}
+
+  /* contact */
+  .contact{background:linear-gradient(118deg,var(--navy) 0%,var(--navy2) 55%,var(--teal-d) 100%);color:#fff;text-align:center}
+  .contact h2{color:#fff}
+  .contact p{color:#C9D8E3;max-width:560px;margin:0 auto 28px;font-size:17px}
+  .contact .btns{justify-content:center}
+  footer{background:var(--navy);color:#8DA3B5;font-size:13.5px;text-align:center;padding:22px 0}
+
+  @media (max-width:860px){
+    .about,.project,.project.flip,.edu{grid-template-columns:1fr}
+    .project.flip .shot{order:0}
+    .skills{grid-template-columns:1fr}
+    .nav ul{display:none}
+    .pulse{display:none}
+    section{padding:64px 0}
+    .hero .wrap{padding:64px 24px 60px}
+  }
+  @media (max-width:480px){
+    .wrap{padding:0 16px}
+    .hero .wrap{padding:52px 16px 48px}
+    .project{padding:16px}
+    .certs li{flex-direction:column;gap:2px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0D4553"/><path d="M10 38h10l4-10 6 18 6-26 5 14h13" fill="none" stroke="#62E3D6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Rumbidzai Mahlanganise
+    </a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="pulse" viewBox="0 0 560 220" aria-hidden="true">
+    <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#62E3D6" stop-opacity="0"/><stop offset=".3" stop-color="#62E3D6" stop-opacity=".6"/><stop offset="1" stop-color="#62E3D6"/></linearGradient></defs>
+    <path d="M0 160 L110 160 L124 136 L136 190 L150 104 L164 176 L176 160 L260 160 L292 152 L324 138 L356 144 L388 118 L420 126 L452 96 L484 104 L516 70 L548 52" fill="none" stroke="url(#g)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="548" cy="52" r="6" fill="#62E3D6"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Health Data Analyst · Health Informatics</div>
+    <h1>Rumbidzai<br>Mahlanganise</h1>
+    <p class="lead">I turn health and business data into <strong>clear, actionable insight</strong>, using Power BI, SQL, Python and Excel, backed by hands-on experience with DHIS2, REDCap and EHR workflows.</p>
+    <div class="btns">
+      <a class="btn primary" href="#projects">View my projects</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/rumbidzai-mahlanganise-3b34b2203" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/Rumbie3365" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="mailto:ruebelinda02@gmail.com">Email me</a>
+    </div>
+    <div class="facts">
+      <span><i></i>BSc Medical Analytics &amp; Informatics, University of Zimbabwe</span>
+      <span><i></i>Health Informatics Intern, ZimSmart Villages</span>
+      <span><i></i>Open to remote roles</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <div class="kicker">About</div>
+      <h2>Data that supports better health decisions</h2>
+      <p>I am a Medical Analytics and Informatics graduate with practical experience in health informatics systems, digital health workflows, data reporting and dashboard development.</p>
+      <p>During my internship at ZimSmart Villages I administered LMS and CRM platforms and analysed LMS, CRM and screening-app data to produce insights on training activity, user engagement and health-screening workflows.</p>
+      <p>My portfolio applies the same skills to public health and business questions: cleaning and preparing data, querying it with SQL, and presenting it in interactive Power BI dashboards and Python models that are honest about their limitations.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><b>3</b><span>end-to-end analytics projects</span></div>
+      <div class="stat"><b>10</b><span>interactive dashboard pages</span></div>
+      <div class="stat"><b>5</b><span>certifications in data &amp; health informatics</span></div>
+      <div class="stat"><b>1 yr</b><span>health informatics internship</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="alt">
+  <div class="wrap">
+    <div class="kicker">Projects</div>
+    <h2>Featured work</h2>
+    <p class="intro">Each project includes the prepared data, SQL queries, the analysis files (Power BI or Python), charts and a written case study.</p>
+
+    <article class="project">
+      <a class="shot" href="https://github.com/Rumbie3365/covid-19-mortality-analysis-powerbi#dashboard-screenshots" target="_blank" rel="noopener">
+        <img src="covid-zimbabwe.jpg" width="1400" height="781" alt="Zimbabwe COVID-19 Mortality Focus dashboard: total cases, deaths, case fatality rate and weekly trends" loading="lazy">
+      </a>
+      <div>
+        <div class="tag-label">Health data analysis</div>
+        <h3>COVID-19 Mortality Analysis</h3>
+        <p>An analysis of WHO COVID-19 data covering reported cases, deaths, case fatality rates and mortality trends, with an interactive five-page Power BI dashboard.</p>
+        <ul>
+          <li>Global overview and country comparison</li>
+          <li>Zimbabwe-focused mortality trends</li>
+          <li>Case fatality rate calculations</li>
+          <li>Public health insights and data limitations</li>
+        </ul>
+        <ul class="chips"><li>Excel</li><li>SQL</li><li>Power BI</li><li>DAX</li><li>WHO data</li></ul>
+        <div class="links">
+          <a class="main" href="https://github.com/Rumbie3365/covid-19-mortality-analysis-powerbi" target="_blank" rel="noopener">View repository</a>
+          <a href="https://github.com/Rumbie3365/covid-19-mortality-analysis-powerbi/blob/main/case-study/COVID19_Mortality_Analysis_Case_Study.pdf" target="_blank" rel="noopener">Case study (PDF)</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project flip">
+      <a class="shot" href="https://github.com/Rumbie3365/retail-sales-performance-analysis-powerbi#dashboard-screenshots" target="_blank" rel="noopener">
+        <img src="retail-overview.jpg" width="1400" height="782" alt="Retail Sales Performance dashboard: net sales, profit, margin, orders and sales versus target" loading="lazy">
+      </a>
+      <div>
+        <div class="tag-label">Business intelligence</div>
+        <h3>Retail Sales Performance Analysis</h3>
+        <p>A sales performance analysis of a retail dataset (generated with Python) covering sales, profit, product categories, customer segments, regions, sales channels, returns and target achievement.</p>
+        <ul>
+          <li>Executive sales performance dashboard</li>
+          <li>Monthly sales and profit trends</li>
+          <li>Product, category, customer and region insights</li>
+          <li>Business recommendations and data limitations</li>
+        </ul>
+        <ul class="chips"><li>Excel</li><li>SQL Server (T-SQL)</li><li>Power BI</li><li>DAX</li><li>Python</li></ul>
+        <div class="links">
+          <a class="main" href="https://github.com/Rumbie3365/retail-sales-performance-analysis-powerbi" target="_blank" rel="noopener">View repository</a>
+          <a href="https://github.com/Rumbie3365/retail-sales-performance-analysis-powerbi/blob/main/case-study/Rumbidzai_Project2_Retail_Sales_Analysis_Case_Study.pdf" target="_blank" rel="noopener">Case study (PDF)</a>
+        </div>
+      </div>
+    </article>
+    <article class="project">
+      <a class="shot" href="https://github.com/Rumbie3365/telecom-customer-churn-analysis-python" target="_blank" rel="noopener">
+        <img src="telecom-churn.jpg" width="1400" height="780" alt="Telecom churn analysis: 26.5% churn rate, $139K monthly revenue lost, model AUC 0.85, churn by contract and gains curve charts" loading="lazy">
+      </a>
+      <div>
+        <div class="tag-label">Customer analytics · Python</div>
+        <h3>Telecom Customer Churn Analysis</h3>
+        <p>An analysis of why 26.5% of a telecom provider's 7,043 customers left, the $139K of monthly revenue it cost, and a logistic regression model that ranks every customer by churn risk.</p>
+        <ul>
+          <li>Churn drivers by contract, tenure, service and payment</li>
+          <li>Revenue at risk, validated in SQL</li>
+          <li>Risk model (AUC 0.85): the riskiest 20% hold half of all churners</li>
+          <li>Six retention recommendations and their limitations</li>
+        </ul>
+        <ul class="chips"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>SQL</li><li>Jupyter</li></ul>
+        <div class="links">
+          <a class="main" href="https://github.com/Rumbie3365/telecom-customer-churn-analysis-python" target="_blank" rel="noopener">View repository</a>
+          <a href="https://github.com/Rumbie3365/telecom-customer-churn-analysis-python/blob/main/case-study/Telecom_Churn_Analysis_Case_Study.pdf" target="_blank" rel="noopener">Case study (PDF)</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker">Experience</div>
+    <h2>Where I have worked</h2>
+    <ol class="timeline">
+      <li class="job">
+        <h3>Health Informatics Intern · ZimSmart Villages</h3>
+        <div class="meta">June 2024 – June 2025</div>
+        <ul>
+          <li>Administered the Zimsmart Institute LMS and CRM platforms, ensuring smooth user access, data consistency and reliable reporting.</li>
+          <li>Managed roles, permissions and front-end/back-end support for staff and external users.</li>
+          <li>Analysed LMS, CRM and screening-app data to produce insights on training activity, user engagement and health-screening workflows.</li>
+          <li>Maintained LMS content updates, learner progress tracking and feedback loops to support quality improvement.</li>
+        </ul>
+      </li>
+      <li class="job">
+        <h3>Brand Ambassador · Econet Wireless Zimbabwe</h3>
+        <div class="meta">November 2018 – August 2020</div>
+        <ul>
+          <li>Represented Econet at customer activations and explained mobile, broadband and promotional offers to customers.</li>
+          <li>Collected customer feedback and shared service insights to improve communication and customer experience.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills" class="alt">
+  <div class="wrap">
+    <div class="kicker">Skills</div>
+    <h2>Tools and strengths</h2>
+    <div class="skills">
+      <div class="skill-card">
+        <h3>Analysis &amp; BI</h3>
+        <ul class="chips"><li>Power BI</li><li>DAX</li><li>SQL / SQL Server</li><li>Excel</li><li>Python</li><li>Tableau</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Health informatics</h3>
+        <ul class="chips"><li>DHIS2</li><li>REDCap</li><li>EHR (Impilo)</li><li>LMS &amp; CRM administration</li><li>Screening-app data</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>Practices</h3>
+        <ul class="chips"><li>Data cleaning</li><li>Data quality</li><li>Dashboard development</li><li>Public health reporting</li><li>User access control</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="kicker">Education</div>
+    <h2>Qualifications</h2>
+    <div class="edu">
+      <div class="edu-card">
+        <h3>BSc Medical Analytics and Informatics</h3>
+        <div class="meta">University of Zimbabwe · 2024</div>
+      </div>
+      <div class="edu-card">
+        <ul class="certs">
+          <li><div><b>Google Data Analytics</b><span>Google · Coursera</span></div><em>2025</em></li>
+          <li><div><b>Digital Health</b><span>Coursera</span></div><em>2024</em></li>
+          <li><div><b>Leading Change in Health Informatics</b><span>Johns Hopkins University · Coursera</span></div><em>2023</em></li>
+          <li><div><b>The Data Science of Health Informatics</b><span>Johns Hopkins University · Coursera</span></div><em>2023</em></li>
+          <li><div><b>Introduction to Statistics &amp; Data Analysis in Public Health</b><span>Imperial College London · Coursera</span></div><em>2023</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--mint)">Contact</div>
+    <h2>Let's work together</h2>
+    <p>I'm open to data analyst, health data analyst and BI roles, remote or in South Africa and Zimbabwe. I'd be glad to hear from you.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:ruebelinda02@gmail.com">ruebelinda02@gmail.com</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/rumbidzai-mahlanganise-3b34b2203" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="https://github.com/Rumbie3365" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Rumbidzai Mahlanganise</footer>
+</body>
+</html>
